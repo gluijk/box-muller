@@ -8,6 +8,16 @@ library(tiff)  # save 16-bit TIFF's
 library(data.table)
 
 
+rnorm.boxmuller=function(U, mean=0, sd=1) {
+    # Box–Muller transform to get normally distributed pairs
+    # from a M x 2 matrix of [0,1] uniformly distributed pairs
+    R=sqrt(-2*log(U[,1]))
+    theta=2*pi*U[,2]
+    Z0=R*cos(theta)
+    Z1=R*sin(theta)
+    return(cbind(Z0,Z1)*sd + mean)
+}
+
 NewBitmap = function(dimx, dimy, val=0) {
     # Crea bitmap de dimensiones dimx y dimy
     return(array(val,c(dimx,dimy)))
@@ -48,16 +58,6 @@ SaveBitmap = function(img, name, trunc=TRUE, gamma=1) {
     # writePNG(t(img[,ncol(img):1] / max(max(img),1))^(1/gamma), name)
     writeTIFF(t(img[,ncol(img):1] / max(max(img),1))^(1/gamma), name,
               bits.per.sample=16)
-}
-
-rnorm.boxmuller=function(U, mean=0, sd=1) {
-    # Box–Muller transform to get normally distributed pairs
-    # from a M x 2 matrix of [0,1] uniformly distributed pairs
-    R=sqrt(-2*log(U[,1]))
-    theta=2*pi*U[,2]
-    Z0=R*cos(theta)
-    Z1=R*sin(theta)
-    return(cbind(Z0,Z1)*sd + mean)
 }
 
 
