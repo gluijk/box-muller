@@ -68,7 +68,6 @@ N=6000
 datosunif=matrix(runif(N), ncol=2)
 datosnorm=rnorm.boxmuller(datosunif)
 
-dev.off()
 par(mfrow = c(2, 1))
 par(cex=1)
 plot(datosunif, col=rgb(1, 0, 0, alpha=0.04), pch=16, cex=1, asp=1,
@@ -89,6 +88,7 @@ abline(h=0, v=0)
 symbols(0, 0, circles=1, add=TRUE, inches=FALSE)
 example=rnorm.boxmuller(matrix(c(U1,U2),ncol=2))
 points(example[1], example[2], pch=16, cex=1.5)
+dev.off()
 
 
 # Histograms
@@ -96,15 +96,14 @@ N=4000000
 datosunif=matrix(runif(N), ncol=2)
 datosnorm=rnorm.boxmuller(datosunif)
 
-dev.off()
 par(mfrow = c(2, 1))
 hist(datosunif, xlim=c(-0.5,1.5), breaks=800)
 hist(datosnorm, xlim=c(-4,4), breaks=800)
+dev.off()
 
 
 # Transformation
 NPLOT=10000
-dev.off()
 plot(0, 0, xlim=c(-3, 3), ylim=c(-3, 3), type="n", xlab="X", ylab="Y", asp=1)
 abline(h=c(0,1), v=c(0,1), col='lightgray')
 symbols(0, 0, circles=1, fg='lightgray', add=TRUE, inches=FALSE)
