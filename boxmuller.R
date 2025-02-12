@@ -137,14 +137,14 @@ rm(datosunif)
 rm(datosnorm)
 rm(DT)
 
-U1=M[, 1]
-U2=M[, 2]
-Z0=M[, 3]
-Z1=M[, 4]
-val=M[, 5]
+U1=M[,1]
+U2=M[,2]
+Z0=M[,3]
+Z1=M[,4]
+val=M[,5]
 
 for (i in 1:nrow(M)) img=DrawLine(img, U1[i], U2[i], Z0[i], Z1[i], val[i])
-SaveBitmap(img, "gargantua.tif", trunc=FALSE, gamma=2.2)
+SaveBitmap(img, "boxmuller.tif", trunc=FALSE, gamma=2.2)
 
 # Generate separate axes
 img=NewBitmap(DIMY, DIMY)
