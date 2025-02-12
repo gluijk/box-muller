@@ -64,17 +64,22 @@ SaveBitmap = function(img, name, trunc=TRUE, gamma=1) {
 ##################################
 
 # Scatterplots
-N=4000
+N=6000
 datosunif=matrix(runif(N), ncol=2)
 datosnorm=rnorm.boxmuller(datosunif)
 
-par(mfrow = c(1, 2))
-
+dev.off()
+par(mfrow = c(2, 1))
+par(cex=1)
 plot(datosunif, col=rgb(1, 0, 0, alpha=0.04), pch=16, cex=1, asp=1,
-     xlim=c(-0.5,1.5), ylim=c(-0.5,1.5), xaxt="n", yaxt="n")
+     xlim=c(-0.5,1.5), ylim=c(-0.5,1.5), xlab='U1', ylab='U2',
+     xaxt="n", yaxt="n")
 axis(side=1, at=seq(-1,2,1))
 axis(side=2, at=seq(-1,2,1))
-abline(h=c(0,1), v=c(0,1))
+abline(h=0, v=0)
+U1=0.1  # example
+U2=0.8
+points(U1, U2, pch=16, cex=1.5)
 
 plot(datosnorm, col=rgb(1, 0, 0, alpha=0.04), pch=16, cex=1, asp=1,
      xlim=c(-3,3), ylim=c(-3,3))
@@ -82,6 +87,8 @@ axis(side=1, at=seq(-3,3,1))
 axis(side=2, at=seq(-3,3,1))
 abline(h=0, v=0)
 symbols(0, 0, circles=1, add=TRUE, inches=FALSE)
+example=rnorm.boxmuller(matrix(c(U1,U2),ncol=2))
+points(example[1], example[2], pch=16, cex=1.5)
 
 
 # Histograms
@@ -89,9 +96,10 @@ N=4000000
 datosunif=matrix(runif(N), ncol=2)
 datosnorm=rnorm.boxmuller(datosunif)
 
-par(mfrow = c(1, 2))
+dev.off()
+par(mfrow = c(2, 1))
 hist(datosunif, xlim=c(-0.5,1.5), breaks=800)
-hist(datosnorm, breaks=800)
+hist(datosnorm, xlim=c(-4,4), breaks=800)
 
 
 # Transformation
